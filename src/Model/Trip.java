@@ -11,5 +11,19 @@ public class Trip {
         this.stringEndDate = stringEndDate;
     }
 
+    public String getTitle() {
+        return title;
+    }
 
+    public String getDestination() {
+        return destination;
+    }
+
+    public String getStringStartDate() {
+        return stringStartDate;
+    }
+
+    public String getStringEndDate() {
+        return stringEndDate;
+    }
 }
