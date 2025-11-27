@@ -1,3 +1,4 @@
-Travelplanner
+# Travelplanner
 
-overview.txt gives the full overview of the core idea behind our project
+## overview.txt
+Gives the full overview of the core idea behind our project
