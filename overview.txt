@@ -1,0 +1,57 @@
+**Manage trips**
+- Title example: 'TripWithTheBoys'
+    Users give input
+- Destination
+    Users give input
+- Start/End date
+    Calendar selection: from XX/XX/XXXX to YY/YY/YYYY
+- Description
+    Users give input
+- ...
+
+**Create/view/edit/delete trip**
+    ° Builder to assemble a Trip: title, destination, dates, description, participants
+    ° Command for edit/delete, makes undo/redo possible
+
+
+**Manage travellers/participants**
+- Name
+- Contact info: email + phone
+- Age
+- Nationality/passport info
+    Potentially upload picture
+
+**Create/view/edit/delete travellers
+    Creator = initially Admin
+        Admin can be transferred to others or be added (whatsapp-like)
+    ° Simple factory for Traveller objects; different subtypes possible: AdminTraveller, GuestTraveller
+    ° Command for edit/delete, makes undo/redo possible
+
+**User abilities**
+- Assign travellers to one or more trips
+- Edit travellers from trip
+- Remove travellers from trip
+- View travellers participating in a certain trip
+
+
+**Manage daily schedules per trip**
+    - Title
+    - Date/time
+    - Type: transport, accommodation, activity, ...
+    - Location, optionally address
+    - Description
+    - Price
+        Potential expansion: Keep track of all the money spend
+        ° Strategy
+            -> Potentially add poll to vote for different activities
+    - ...
+
+**Create/view/edit/delete itinerary items for each trip**
+    ° Factory Pattern for different item types: Transport, Accommodation, Activity
+    ° Command for edit/delete, makes undo/redo possible
+
+**Ability to view a day overview for each day of the trip**
+    ° Observer, one too many dependencies
+        Shared calendar principle
+
+**Automatically calculate/adjust total price for each trip**
