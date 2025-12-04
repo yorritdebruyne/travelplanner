@@ -3,16 +3,18 @@ package Controller;
 import Model.Trip;
 import Model.TripBuilder;
 import Manager.TripManager;
+import Command.*;
 
 import java.util.List;
 
 public class TripController {
-
     private TripManager tripManager;
+    private CommandManager commandManager;
 
     // Retrieve Singleton instance
     public TripController() {
         this.tripManager = TripManager.getInstance();
+        this.commandManager = new CommandManager();
     }
 
     // CREATE a trip via TripBuilder
@@ -24,7 +26,7 @@ public class TripController {
                 .setStringStartDate(stringStartDate)
                 .setStringEndDate(stringEndDate)
                 .build();
-        tripManager.addTrip(trip);
+        commandManager.executeCommand(new AddTripCommand(trip, tripManager));
         return trip;
     }
 
@@ -38,11 +40,10 @@ public class TripController {
     }
 
     // UPDATE a trip via TripBuilder
-    public boolean updateTrip(String oldTitle, String oldDestination, String oldDescription, String oldStringStartDate, String oldStringEndDate
-    , String newTitle, String newDestination, String newDescription, String newStringStartDate, String newStringEndDate) {
-        Trip trip = tripManager.getInstance().getTripByTitle(oldTitle);
-        if (trip != null) {
-            Trip updatedTrip = new TripBuilder()
+    public boolean updateTrip(String oldTitle, String newTitle, String newDestination, String newDescription, String newStringStartDate, String newStringEndDate) {
+        Trip oldTrip = tripManager.getTripByTitle(oldTitle);
+        if (oldTrip != null) {
+            Trip newTrip = new TripBuilder()
                     .setTitle(newTitle)
                     .setDestination(newDestination)
                     .setDescription(newDescription)
@@ -50,8 +51,7 @@ public class TripController {
                     .setStringEndDate(newStringEndDate)
                     .build();
 
-            tripManager.removeTrip(trip);
-            tripManager.addTrip(updatedTrip);
+            commandManager.executeCommand(new UpdateTripCommand(tripManager, oldTrip, newTrip));
             return true;
         }
         return false;
@@ -61,9 +61,19 @@ public class TripController {
     public boolean deleteTrip(String title) {
         Trip trip = tripManager.getTripByTitle(title);
         if (trip != null) {
-            tripManager.removeTrip(trip);
+            commandManager.executeCommand(new DeleteTripCommand(trip, tripManager));
             return true;
         }
         return false;
+    }
+
+    // Undo last command
+    public void undoCommand() {
+        commandManager.undoCommand();
+    }
+
+    // Redo last undone command
+    public void redoCommand() {
+        commandManager.redoCommand();
     }
 }
