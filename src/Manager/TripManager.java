@@ -2,6 +2,8 @@ package Manager;
 
 import Model.ItineraryItem;
 import Model.Trip;
+import Observer.TripObserver;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,9 +15,11 @@ public class TripManager {
     // Volatile for thread safety
     private static volatile TripManager instance;
     private List<Trip> trips;
+    private List<TripObserver> observers;
 
     private TripManager() {
         trips = new ArrayList<>();
+        observers = new ArrayList<>();
     }
 
     // Double-checked locking Singleton
@@ -30,15 +34,31 @@ public class TripManager {
         return instance;
     }
 
+    // Observer methods
+    public void registerObserver(TripObserver observer) {
+        observers.add(observer);
+    }
+
+    public void removeObserver(TripObserver observer) {
+        observers.remove(observer);
+    }
+
+    public void notifyObservers() {
+        for (TripObserver observer : observers) {
+            observer.update(getAllTrips()); // Always send a copy of the list
+        }
+    }
+
+
     // CRUD methods
     public void addTrip(Trip trip) {
         trips.add(trip);
-        // TODO: add notifyObservers();
+        notifyObservers();
     }
 
     public void removeTrip(Trip trip) {
         trips.remove(trip);
-        // TODO: add notifyObservers();
+        notifyObservers();
     }
 
     public Trip getTripByTitle(String title) {
@@ -51,6 +71,6 @@ public class TripManager {
     }
 
     public List<Trip> getAllTrips() {
-        return new ArrayList<>(trips); // Copy
+        return new ArrayList<>(trips); // Always return a copy of the list
     }
 }
