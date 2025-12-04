@@ -1,3 +1,5 @@
+package Manager;
+
 import Model.ItineraryItem;
 import Model.Trip;
 import java.util.ArrayList;
