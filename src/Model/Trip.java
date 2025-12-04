@@ -1,7 +1,7 @@
 package Model;
 
 public class Trip {
-    String title, destination, description, stringStartDate, stringEndDate;
+    private String title, destination, description, stringStartDate, stringEndDate;
 
     public Trip(String title, String destination, String description, String stringStartDate, String stringEndDate) {
         this.title = title;
@@ -11,18 +11,16 @@ public class Trip {
         this.stringEndDate = stringEndDate;
     }
 
+    // Getters
     public String getTitle() {
         return title;
     }
-
     public String getDestination() {
         return destination;
     }
-
     public String getStringStartDate() {
         return stringStartDate;
     }
-
     public String getStringEndDate() {
         return stringEndDate;
     }
