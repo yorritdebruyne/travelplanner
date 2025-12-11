@@ -1,25 +1,26 @@
 package Command;
 
-import Manager.TripManager;
+import Manager.*;
 import Model.ItineraryItem;
 import Model.Trip;
 //test
 public class AddItineraryItemCommand implements Command{
     private final String tripTitle;
     private final ItineraryItem item;
-    private final TripManager tripManager;
+    private TripManager tripManager;
+    private final ItineraryItemManager ItemManager;
 
-    public AddItineraryItemCommand(String tripTitle, ItineraryItem item) {
+    public AddItineraryItemCommand(String tripTitle, ItineraryItem item, ItineraryItemManager ItemManager) {
         this.tripTitle = tripTitle;
         this.item = item;
-        this.tripManager = TripManager.getInstance();
+        this.ItemManager = ItemManager;
     }
 
     @Override
     public void execute() {
         Trip trip = tripManager.getTripByTitle(tripTitle);
         if (trip != null){
-            trip.addItineraryItem(item);
+            item.addItineraryItem(item);
         }
     }
 
@@ -27,7 +28,7 @@ public class AddItineraryItemCommand implements Command{
     public void undo() {
         Trip trip = tripManager.getTripByTitle(tripTitle);
         if (trip != null){
-            trip.removeItineraryItem(item);
+            item.removeItineraryItem(item);
         }
     }
 }

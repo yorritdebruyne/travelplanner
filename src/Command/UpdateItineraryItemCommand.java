@@ -1,35 +1,31 @@
 package Command;
 //test
-import Manager.TripManager;
+import Manager.*;
 import Model.ItineraryItem;
 import Model.Trip;
 public class UpdateItineraryItemCommand implements Command {
-    private final String tripTitle;
     private final ItineraryItem oldItem, newItem;
-    private final TripManager tripManager;
+    private ItineraryItemManager itemManager;
 
-    public UpdateItineraryItemCommand(String tripTitle, ItineraryItem oldItem, ItineraryItem newItem, TripManager tripManager) {
-        this.tripTitle = tripTitle;
+    public UpdateItineraryItemCommand(ItineraryItemManager itemManager, ItineraryItem oldItem, ItineraryItem newItem) {
+        this.itemManager = itemManager;
         this.oldItem = oldItem;
         this.newItem = newItem;
-        this.tripManager = TripManager.getInstance();
     }
 
     @Override
     public void execute(){
-        Trip trip = tripManager.getTripByTitle(tripTitle);
-        if (trip != null) {
-            trip.removeItineraryItem(oldItem);
-            trip.addItineraryItem(newItem);
-        }
+            itemManager.removeItem(oldItem);
+            itemManager.addItem(newItem);
     }
 
     @Override
     public void undo(){
-        Trip trip = tripManager.getTripByTitle(tripTitle);
-        if (trip != null) {
-            trip.removeItineraryItem(newItem);
-            trip.addItineraryItem(oldItem);
-        }
+            itemManager.removeItem(newItem);
+            itemManager.addItem(oldItem);
     }
 }
+
+
+// TODO :   Trip trip = tripManager.getTripByTitle(tripTitle);
+//        if (trip != null)     => fix this

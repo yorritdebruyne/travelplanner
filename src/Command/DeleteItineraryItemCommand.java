@@ -1,33 +1,26 @@
 package Command;
 
+import Manager.ItineraryItemManager;
 import Manager.TripManager;
 import Model.ItineraryItem;
 import Model.Trip;
 //test
 public class DeleteItineraryItemCommand implements Command {
-    private final String tripTitle;
     private final ItineraryItem item;
-    private final TripManager tripManager;
+    private final ItineraryItemManager itemManager;
 
-    public DeleteItineraryItemCommand(String tripTitle, ItineraryItem item) {
-        this.tripTitle = tripTitle;
+    public DeleteItineraryItemCommand(ItineraryItem item, ItineraryItemManager itemManager) {
         this.item = item;
-        this.tripManager = TripManager.getInstance();
+        this.itemManager = itemManager;
     }
 
     @Override
     public void execute(){
-        Trip trip = tripManager.getTripByTitle(tripTitle);
-        if (trip != null) {
-            trip.removeItineraryItem(item);
-        }
+            item.removeItineraryItem(item);
     }
 
     @Override
     public void undo() {
-        Trip trip = tripManager.getTripByTitle(tripTitle);
-        if (trip != null) {
-            trip.addItineraryItem(item);
-        }
+            item.addItineraryItem(item);
     }
 }
