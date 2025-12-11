@@ -36,7 +36,23 @@ public class Main {
                 "20/07/2026"
         );
 
+        // Update a trip
+        tripController.updateTrip(
+                "FamilyHoliday",
+                "FamilyHoliday",
+                "Paris",
+                "Changed destination",
+                "10/07/2026",
+                "20/07/2026"
+        );
+
         // Delete a trip
         tripController.deleteTrip("TripWithTheBoys");
+
+        // Undo (herstel delete)
+        tripController.undoCommand();
+
+        // Redo (herstel undo)
+        tripController.redoCommand();
     }
 }

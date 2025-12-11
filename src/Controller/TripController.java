@@ -76,4 +76,15 @@ public class TripController {
         commandManager.redoCommand();
     }
 
+    public void addItineraryItem(String tripTitle, ItineraryItem item){
+        commandManager.executeCommand(new AddItineraryItemCommand(tripTitle, item));
+    }
+
+    public void deleteItineraryItem(String tripTitle, ItineraryItem item) {
+        commandManager.executeCommand(new DeleteItineraryItemCommand(tripTitle, item));
+    }
+
+    public void updateItineraryItem(String tripTitle, ItineraryItem oldItem, ItineraryItem newItem) {
+        commandManager.executeCommand(new updateItineraryItemCommand(tripTitle, oldItem, newItem, tripManager));
+    }
 }
