@@ -13,4 +13,7 @@ public class ItineraryItem {
         this.description = description;
         this.price = price;
     }
+
+    public String getStringStartTime() {return stringStartTime;}
+    public double getPrice() {return price;}
 }
