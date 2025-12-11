@@ -1,7 +1,6 @@
 package Controller;
 
-import Model.Trip;
-import Model.TripBuilder;
+import Model.*;
 import Manager.TripManager;
 import Command.*;
 
@@ -75,5 +74,17 @@ public class TripController {
     // Redo last undone command
     public void redoCommand() {
         commandManager.redoCommand();
+    }
+
+    public void addItineraryItem(String tripTitle, ItineraryItem item){
+        commandManager.executeCommand(new AddItineraryItemCommand(tripTitle, item));
+    }
+
+    public void deleteItineraryItem(String tripTitle, ItineraryItem item) {
+        commandManager.executeCommand(new DeleteItineraryItemCommand(tripTitle, item));
+    }
+
+    public void updateItineraryItem(String tripTitle, ItineraryItem oldItem, ItineraryItem newItem) {
+        commandManager.executeCommand(new updateItineraryItemCommand(tripTitle, oldItem, newItem, tripManager));
     }
 }
