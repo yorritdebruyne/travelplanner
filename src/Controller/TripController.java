@@ -5,7 +5,7 @@ import Manager.TripManager;
 import Command.*;
 
 import java.util.List;
-//test
+
 public class TripController {
     private TripManager tripManager;
     private CommandManager commandManager;
@@ -85,6 +85,6 @@ public class TripController {
     }
 
     public void updateItineraryItem(String tripTitle, ItineraryItem oldItem, ItineraryItem newItem) {
-        commandManager.executeCommand(new updateItineraryItemCommand(tripTitle, oldItem, newItem, tripManager));
+        commandManager.executeCommand(new UpdateItineraryItemCommand(tripTitle, oldItem, newItem, tripManager));
     }
 }
