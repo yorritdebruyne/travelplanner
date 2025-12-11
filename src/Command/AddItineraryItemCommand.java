@@ -3,7 +3,7 @@ package Command;
 import Manager.TripManager;
 import Model.ItineraryItem;
 import Model.Trip;
-
+//test
 public class AddItineraryItemCommand implements Command{
     private final String tripTitle;
     private final ItineraryItem item;

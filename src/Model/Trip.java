@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.time.LocalDateTime;
-
+//test
 public class Trip {
     private String title, destination, description, stringStartDate, stringEndDate;
     private List<ItineraryItem> itineraryItems = new ArrayList<>();

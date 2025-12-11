@@ -4,7 +4,7 @@ package Command;
 import Manager.TripManager;
 import Model.Trip;
 
-// Concrete Command for updating a trip
+// test
 public class UpdateTripCommand implements Command{
     private TripManager tripManager;
     private Trip oldTrip;

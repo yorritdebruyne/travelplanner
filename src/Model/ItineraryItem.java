@@ -1,5 +1,5 @@
 package Model;
-
+//test
 public class ItineraryItem {
     String title, stringStartTime, stringEndTime, type, location, description;
     double price;
