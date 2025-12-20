@@ -5,30 +5,21 @@ import Model.ItineraryItem;
 import Model.Trip;
 //test
 public class AddItineraryItemCommand implements Command{
-    private final String tripTitle;
-    private final ItineraryItem item;
-    private TripManager tripManager;
-    private final ItineraryItemManager ItemManager;
+    private Trip trip;
+    private ItineraryItem item;
 
-    public AddItineraryItemCommand(String tripTitle, ItineraryItem item, ItineraryItemManager ItemManager) {
-        this.tripTitle = tripTitle;
+    public AddItineraryItemCommand(Trip trip, ItineraryItem item) {
+        this.trip = trip;
         this.item = item;
-        this.ItemManager = ItemManager;
     }
 
     @Override
     public void execute() {
-        Trip trip = tripManager.getTripByTitle(tripTitle);
-        if (trip != null){
-            item.addItineraryItem(item);
-        }
+        trip.addItineraryItem(item);
     }
 
     @Override
     public void undo() {
-        Trip trip = tripManager.getTripByTitle(tripTitle);
-        if (trip != null){
-            item.removeItineraryItem(item);
-        }
+        trip.removeItineraryItem(item);
     }
 }

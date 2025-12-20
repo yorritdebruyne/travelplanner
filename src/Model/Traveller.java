@@ -8,6 +8,7 @@ public abstract class Traveller {
     protected int age;
 
     public Traveller(String id, String name, String mail, String phone, String nationality, String passportNumber, int age) {
+        this.id = id;
         this.name = name;
         this.mail = mail;
         this.phone = phone;
@@ -43,4 +44,19 @@ public abstract class Traveller {
     public int getAge() {
         return age;
     }
+
+    @Override
+    public String toString() {
+        return name + " (" + nationality + ", age " + age + ")";
+    }
+
+    public String getDetails() {
+        return "Name: " + name +
+                "\nEmail: " + mail +
+                "\nPhone: " + phone +
+                "\nNationality: " + nationality +
+                "\nPassport: " + passportNumber +
+                "\nAge: " + age;
+    }
+
 }

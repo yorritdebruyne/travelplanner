@@ -7,8 +7,8 @@ import Model.*;
 import java.util.List;
 
 public class ItineraryItemController {
-    private ItineraryItemManager itemManager;
-    private CommandManager commandManager;
+    private static ItineraryItemManager itemManager;
+    private static CommandManager commandManager;
 
     // Retrieve Singleton instance
     public ItineraryItemController() {
@@ -16,7 +16,7 @@ public class ItineraryItemController {
         this.commandManager = new CommandManager();
     }
 
-    public ItineraryItem createItem(String title, String stringStartTime, String stringEndTime, String type, String location, String description, double totalPrice){
+    public ItineraryItem createItem(Trip trip,String title, String stringStartTime, String stringEndTime, String type, String location, String description, double totalPrice){
         ItineraryItem ItineraryItem = new ItemBuilder()
                 .setTitle(title)
                 .setStringStartTime(stringStartTime)
@@ -26,7 +26,7 @@ public class ItineraryItemController {
                 .setDescription(description)
                 .setTotalPrice(totalPrice)
                 .build();
-        commandManager.executeCommand(new AddItineraryItemCommand(title,ItineraryItem, itemManager));
+        commandManager.executeCommand(new AddItineraryItemCommand(trip, ItineraryItem));
         return ItineraryItem;
     }
 
@@ -56,10 +56,10 @@ public class ItineraryItemController {
         return false;
     }
 
-    public boolean deleteItem(String title){
+    public static boolean deleteItem(Trip trip, String title){
         ItineraryItem item = itemManager.getItemByTitle(title);
         if (item != null) {
-            commandManager.executeCommand(new DeleteItineraryItemCommand(item, itemManager));
+            commandManager.executeCommand(new DeleteItineraryItemCommand(trip, item));
             return true;
         }
         return false;

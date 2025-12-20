@@ -23,34 +23,6 @@ public class ItineraryItem {
     public String getStringStartTime() {return stringStartTime;}
     public double getPrice() {return totalPrice;}
 
-    public void addItineraryItem(ItineraryItem item) {
-        itineraryItems.add(item);
-        recalculateTotalPrice();
-    }
-
-    public void removeItineraryItem(ItineraryItem item){
-        itineraryItems.remove(item);
-        recalculateTotalPrice();
-    }
-
-    public void recalculateTotalPrice() {
-        double sum =0.0;
-        for(ItineraryItem item : itineraryItems){
-            sum += item.getPrice();
-        }
-        this.totalPrice = sum;
-    }
-
-    public List<ItineraryItem> getItemsForDay(LocalDate day) {
-        List<ItineraryItem> result = new ArrayList<>();
-        for (ItineraryItem item : itineraryItems) {
-            LocalDate itemDate = LocalDate.parse(item.getStringStartTime().substring(0, 10));
-            if (itemDate.equals(day)) {
-                result.add(item);
-            }
-        }
-        return result;
-    }
 
     public List<ItineraryItem> getItineraryItems() {
         return new ArrayList<>(itineraryItems);
@@ -76,7 +48,19 @@ public class ItineraryItem {
         return description;
     }
 
-    public double getTotalPrice() {
-        return totalPrice;
+    @Override
+    public String toString() {
+        return title + " ( Start time: " + stringStartTime + ", End time " + stringEndTime + ")" ;
     }
+
+    public String getDetails() {
+        return "Title: " + title +
+                "\nType: " + type +
+                "\nLocation: " + location +
+                "\nStart: " + stringStartTime +
+                "\nEnd: " + stringEndTime +
+                "\nDescription: " + description +
+                "\nPrice: €" + totalPrice;
+    }
+
 }

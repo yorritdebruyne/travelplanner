@@ -6,21 +6,21 @@ import Model.ItineraryItem;
 import Model.Trip;
 //test
 public class DeleteItineraryItemCommand implements Command {
-    private final ItineraryItem item;
-    private final ItineraryItemManager itemManager;
+    private Trip trip;
+    private ItineraryItem item;
 
-    public DeleteItineraryItemCommand(ItineraryItem item, ItineraryItemManager itemManager) {
+    public DeleteItineraryItemCommand(Trip trip, ItineraryItem item) {
+        this.trip = trip;
         this.item = item;
-        this.itemManager = itemManager;
     }
 
     @Override
     public void execute(){
-            item.removeItineraryItem(item);
+            trip.removeItineraryItem(item);
     }
 
     @Override
     public void undo() {
-            item.addItineraryItem(item);
+            trip.addItineraryItem(item);
     }
 }

@@ -26,6 +26,3 @@ public class UpdateItineraryItemCommand implements Command {
     }
 }
 
-
-// TODO :   Trip trip = tripManager.getTripByTitle(tripTitle);
-//        if (trip != null)     => fix this
