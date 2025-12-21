@@ -1,7 +1,7 @@
 package Model;
 
 public abstract class Traveller {
-    // Traveller for association to trips, not name/email because they can change.
+    // Traveller id for association to trips, not name/email because they can change.
     // Keep id constant across updates
     protected String id;
     protected String name, mail, phone, nationality, passportNumber;

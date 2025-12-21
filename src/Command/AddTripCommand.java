@@ -3,7 +3,9 @@ package Command;
 import Model.Trip;
 import Manager.TripManager;
 
-// Concrete Command for adding a trip
+/**
+ * Concrete Command for adding a trip
+ */
 public class AddTripCommand implements Command {
     private Trip trip;
     private TripManager tripManager;

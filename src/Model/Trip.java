@@ -21,8 +21,6 @@ public class Trip {
     }
 
 
-
-
     // Getters
     public String getTitle() {
         return title;

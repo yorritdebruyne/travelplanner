@@ -4,7 +4,7 @@ import Manager.ItineraryItemManager;
 import Manager.TripManager;
 import Model.ItineraryItem;
 import Model.Trip;
-//test
+
 public class DeleteItineraryItemCommand implements Command {
     private Trip trip;
     private ItineraryItem item;

@@ -47,6 +47,10 @@ public class TravellerManager {
 
     // CRUD
     public void addTraveller(Traveller traveller) {
+        if (travellers.containsKey(traveller.getId())) {
+            throw new IllegalArgumentException("Traveller with id " + traveller.getId() + " already exists!");
+        }
+
         travellers.put(traveller.getId(), traveller);
         notifyObservers();
     }
