@@ -7,16 +7,16 @@ import java.util.UUID;
 public class TravellerInputDialog {
 
     public static Traveller show(JFrame parent){
-        JTextField id = new JTextField();
         JTextField name = new JTextField();
         JTextField mail = new JTextField();
         JTextField phone = new JTextField();
         JTextField nationality = new JTextField();
         JTextField passportNumber = new JTextField();
         JTextField age = new JTextField();
+        JComboBox<TravellerType> typeCombo = new JComboBox<>(TravellerType.values());
 
         Object[]  fields = {
-                "id", id,
+                "Type", typeCombo,
                 "name",name,
                 "mail",mail,
                 "phone",phone,
@@ -28,8 +28,8 @@ public class TravellerInputDialog {
         int result = JOptionPane.showConfirmDialog(parent, fields, "Add Traveller", JOptionPane.OK_CANCEL_OPTION);
 
         if (result == JOptionPane.OK_OPTION) {
-            return new GuestTraveller(
-                    UUID.randomUUID().toString(),
+            return TravellerFactory.createTraveller(
+                    TravellerType.GUEST, // Or selected type from a dropdown
                     name.getText(),
                     mail.getText(),
                     phone.getText(),

@@ -20,9 +20,9 @@ public class TravellerController {
     }
 
     // CREATE a traveller using the TravellerFactory
-    public Traveller createTraveller(TravellerType type, String id, String name, String mail, String phone,
+    public Traveller createTraveller(TravellerType type, String name, String mail, String phone,
                                      String nationality, String passportNumber, int age){
-        Traveller traveller = TravellerFactory.createTraveller(type, id, name, mail, phone, nationality, passportNumber, age);
+        Traveller traveller = TravellerFactory.createTraveller(type, name, mail, phone, nationality, passportNumber, age);
         commandManager.executeCommand(new AddTravellerCommand(traveller, travellerManager));
         return traveller;
     }
