@@ -29,7 +29,8 @@ public class TravellerInputDialog {
 
         if (result == JOptionPane.OK_OPTION) {
             return TravellerFactory.createTraveller(
-                    TravellerType.GUEST, // Or selected type from a dropdown
+                    (TravellerType) typeCombo.getSelectedItem(),
+//                    TravellerType.GUEST, // Or selected type from a dropdown
                     name.getText(),
                     mail.getText(),
                     phone.getText(),

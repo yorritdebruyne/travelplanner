@@ -8,24 +8,27 @@ import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 
 public class DayOverviewPanel extends JPanel {
 
     private DefaultListModel<ItineraryItem> model = new DefaultListModel<>();
+    // Centralized formatter to match the rest of the app
+    private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 
 
     public DayOverviewPanel(Trip trip) {
         setLayout(new BorderLayout());
 
-        JTextField dayField = new JTextField(trip.getStringStartDate().toString());
+        JTextField dayField = new JTextField(trip.getStringStartDate().format(FORMATTER));
         JButton view = new JButton("View Day");
 
         JList<ItineraryItem> list = new JList<>(model);
 
         view.addActionListener(e -> {
             try {
-                LocalDate selectedDay = LocalDate.parse(dayField.getText());
+                LocalDate selectedDay = LocalDate.parse(dayField.getText(), FORMATTER);
 
                 if (selectedDay.isBefore(trip.getStringStartDate()) ||
                         selectedDay.isAfter(trip.getStringEndDate())) {
@@ -33,9 +36,9 @@ public class DayOverviewPanel extends JPanel {
                     JOptionPane.showMessageDialog(
                             this,
                             "Date must be between " +
-                                    trip.getStringStartDate() +
+                                    trip.getStringStartDate().format(FORMATTER) +
                                     " and " +
-                                    trip.getStringEndDate(),
+                                    trip.getStringEndDate().format(FORMATTER),
                             "Invalid date",
                             JOptionPane.ERROR_MESSAGE
                     );
@@ -44,7 +47,11 @@ public class DayOverviewPanel extends JPanel {
 
                 model.clear();
                 for (ItineraryItem item : trip.getItineraryItems()) {
-                    if (item.getStringStartTime().startsWith(selectedDay.toString())) {
+                    // Extract the date part (first 10 chars: DD-MM-YYYY) and parse it
+                    String itemDateString = item.getStringStartTime().substring(0, 10);
+                    LocalDate itemDate = LocalDate.parse(itemDateString, FORMATTER);
+
+                    if (itemDate.equals(selectedDay)) {
                         model.addElement(item);
                     }
                 }

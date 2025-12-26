@@ -18,8 +18,8 @@ public class TripInputDialog {
                 "Title", title,
                 "Destination", destination,
                 "Description", description,
-                "Start Date (YYYY-MM-DD)", startDate,
-                "End Date (YYYY-MM-DD)", endDate
+                "Start Date (DD-MM-YYYY)", startDate,
+                "End Date (DD-MM-YYYY)", endDate
         };
 
         int result = JOptionPane.showConfirmDialog(parent, fields, "Create Trip", JOptionPane.OK_CANCEL_OPTION);

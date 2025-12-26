@@ -39,5 +39,26 @@ public class ItemBuilder {
         return this;
     }
 
-    public ItineraryItem build(){return new ItineraryItem(title, stringStartTime, stringEndTime, type, location, description, totalPrice);}
+    public ItineraryItem build() {
+        // Convert the String type to the ItineraryType enum
+        ItineraryType itineraryType;
+        try {
+            itineraryType = ItineraryType.valueOf(type.toUpperCase());
+        } catch (Exception e) {
+            // Default to ACTIVITY if the type is invalid
+            itineraryType = ItineraryType.ACTIVITY;
+        }
+
+        // Use the factory to create the specific subclass instance
+        return ItineraryItemFactory.createItem(
+                itineraryType,
+                title,
+                stringStartTime,
+                stringEndTime,
+                location,
+                description,
+                totalPrice
+        );
+    }
+//    public ItineraryItem build(){return new ItineraryItem(title, stringStartTime, stringEndTime, type, location, description, totalPrice);}
 }

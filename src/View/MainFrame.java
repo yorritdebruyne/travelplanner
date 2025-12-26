@@ -58,6 +58,7 @@ public class MainFrame extends JFrame {
             Trip selected = tripList.getSelectedValue();
             if(selected != null) {
                 tripController.deleteTrip(selected.getTitle());
+                refresh();
             }
         });
 

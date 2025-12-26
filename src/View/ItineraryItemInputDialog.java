@@ -14,13 +14,14 @@ public class ItineraryItemInputDialog {
         JTextField location = new JTextField();
         JTextField description = new JTextField();
         JTextField price = new JTextField();
+        JComboBox<ItineraryType> typeCombo = new JComboBox<>(ItineraryType.values());
 
         Object[] fields = {
                 "Title", title,
-                "Date (YYYY-MM-DD)", date,
-                "Start Time UU:MM", startTime,
-                "End Time UU:MM", endTime,
-                "Type", type,
+                "Date (DD-MM-YYYY)", date,
+                "Start Time HH:mm", startTime,
+                "End Time HH:mm", endTime,
+                "Type", typeCombo,
                 "Location", location,
                 "Description", description,
                 "Price", price
@@ -31,8 +32,8 @@ public class ItineraryItemInputDialog {
         if (result == JOptionPane.OK_OPTION) {
             return new ItemBuilder()
                     .setTitle(title.getText())
-                    .setStringStartTime(date.getText() + "T" + startTime.getText())
-                    .setStringEndTime(date.getText() + "T" + endTime.getText())
+                    .setStringStartTime(date.getText() + " " + startTime.getText())
+                    .setStringEndTime(date.getText() + " " + endTime.getText())
                     .setType(type.getText())
                     .setLocation(location.getText())
                     .setDescription(description.getText())

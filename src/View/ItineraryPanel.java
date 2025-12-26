@@ -52,9 +52,11 @@ public class ItineraryPanel extends JPanel {
         });
 
         remove.addActionListener(e->{
-            ItineraryItem selected = itemList.getSelectedValue();
+            ItineraryItem selected = list.getSelectedValue(); // JList local variable
+//            ItineraryItem selected = itemList.getSelectedValue();
             if(selected != null){
-                ItineraryItemController.deleteItem(trip, String.valueOf(selected));
+                ItineraryItemController.deleteItem(trip, selected.getTitle());
+//                ItineraryItemController.deleteItem(trip, String.valueOf(selected));
                 refresh();
             }
         });

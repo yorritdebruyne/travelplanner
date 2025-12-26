@@ -1,10 +1,12 @@
 package Model;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Trip {
+    private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("dd-MM-yyyy");
     private String title, destination, description;
     private LocalDate startDate, endDate;
     private List<ItineraryItem> itineraryItems = new ArrayList<>();
@@ -16,8 +18,9 @@ public class Trip {
         this.title = title;
         this.destination = destination;
         this.description = description;
-        this.startDate = LocalDate.parse(startDate);
-        this.endDate = LocalDate.parse(endDate);
+        // Adjust to use dd/MM/YYYY
+        this.startDate = LocalDate.parse(startDate, FORMATTER);
+        this.endDate = LocalDate.parse(endDate, FORMATTER);
     }
 
 
@@ -36,6 +39,11 @@ public class Trip {
     }
 
     public void addItineraryItem(ItineraryItem item) {
+        // Range check
+        LocalDate itemDate = LocalDate.parse(item.getStringStartTime().substring(0, 10), FORMATTER);
+        if (itemDate.isBefore(startDate) || itemDate.isAfter(endDate)) {
+            throw new IllegalArgumentException("\"Item date \" + itemDate + \" is outside trip range (\" + startDate + \" to \" + endDate + \")\"");
+        }
         itineraryItems.add(item);
         recalculateTotalPrice();
     }
@@ -56,7 +64,7 @@ public class Trip {
     public List<ItineraryItem> getItemsForDay(LocalDate day) {
         List<ItineraryItem> result = new ArrayList<>();
         for (ItineraryItem item : itineraryItems) {
-            LocalDate itemDate = LocalDate.parse(item.getStringStartTime().substring(0, 10));
+            LocalDate itemDate = LocalDate.parse(item.getStringStartTime().substring(0, 10), FORMATTER);
             if (itemDate.equals(day)) {
                 result.add(item);
             }

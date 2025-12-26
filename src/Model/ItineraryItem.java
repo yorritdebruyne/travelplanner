@@ -4,29 +4,35 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-//test
-public class ItineraryItem {
-    String title, stringStartTime, stringEndTime, type, location, description;
-    private List<ItineraryItem> itineraryItems = new ArrayList<>();
-    private double totalPrice = 0.0;
+public abstract class ItineraryItem {
+    protected String title, stringStartTime, stringEndTime, type, location, description;
+    protected double price;
+//    private List<ItineraryItem> itineraryItems = new ArrayList<>();
+//    private double totalPrice = 0.0;
 
-    public ItineraryItem(String title, String stringStartTime, String stringEndTime, String type, String location, String description, double price) {
+    public ItineraryItem(String title, String stringStartTime, String stringEndTime, String location, String description, double price) {
         this.title = title;
         this.stringStartTime = stringStartTime;
         this.stringEndTime = stringEndTime;
         this.type = type;
         this.location = location;
         this.description = description;
-        this.totalPrice = price;
+        this.price = price;
+//        this.totalPrice = price;
     }
 
     public String getStringStartTime() {return stringStartTime;}
-    public double getPrice() {return totalPrice;}
 
+    public double getPrice() {return price;}
 
-    public List<ItineraryItem> getItineraryItems() {
-        return new ArrayList<>(itineraryItems);
-    }
+//    public double getPrice() {
+//        return totalPrice;
+//    }
+//
+//
+//    public List<ItineraryItem> getItineraryItems() {
+//        return new ArrayList<>(itineraryItems);
+//    }
 
     public String getTitle() {
         return title;
@@ -36,9 +42,11 @@ public class ItineraryItem {
         return stringEndTime;
     }
 
-    public String getType() {
-        return type;
-    }
+    public abstract String getType();
+
+//    public String getType() {
+//        return type;
+//    }
 
     public String getLocation() {
         return location;
@@ -60,7 +68,8 @@ public class ItineraryItem {
                 "\nStart: " + stringStartTime +
                 "\nEnd: " + stringEndTime +
                 "\nDescription: " + description +
-                "\nPrice: €" + totalPrice;
+                "\nPrice: €" + price;
+//                "\nPrice: €" + totalPrice;
     }
 
 }
