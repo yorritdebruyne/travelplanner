@@ -10,7 +10,6 @@ public class ItineraryItemInputDialog {
         JTextField date = new JTextField();
         JTextField startTime = new JTextField();
         JTextField endTime = new JTextField();
-        JTextField type = new JTextField();
         JTextField location = new JTextField();
         JTextField description = new JTextField();
         JTextField price = new JTextField();
@@ -30,15 +29,19 @@ public class ItineraryItemInputDialog {
         int result = JOptionPane.showConfirmDialog(parent, fields, "Add Itinerary Item", JOptionPane.OK_CANCEL_OPTION);
 
         if (result == JOptionPane.OK_OPTION) {
-            return new ItemBuilder()
-                    .setTitle(title.getText())
-                    .setStringStartTime(date.getText() + " " + startTime.getText())
-                    .setStringEndTime(date.getText() + " " + endTime.getText())
-                    .setType(type.getText())
-                    .setLocation(location.getText())
-                    .setDescription(description.getText())
-                    .setTotalPrice(Double.parseDouble(price.getText()))
-                    .build();
+            try{
+                return new ItemBuilder()
+                        .setTitle(title.getText())
+                        .setStringStartTime(date.getText() + " " + startTime.getText())
+                        .setStringEndTime(date.getText() + " " + endTime.getText())
+                        .setType(typeCombo.getSelectedItem().toString())
+                        .setLocation(location.getText())
+                        .setDescription(description.getText())
+                        .setTotalPrice(Double.parseDouble(price.getText()))
+                        .build();
+            } catch (Exception e){
+                JOptionPane.showMessageDialog(parent, "Invalid input: " + e.getMessage());
+            }
         }
         return null;
     }

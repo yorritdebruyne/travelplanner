@@ -14,9 +14,9 @@ public class TravellerController {
     private CommandManager commandManager;
 
     // Retrieve Singleton instance
-    public TravellerController() {
+    public TravellerController(CommandManager commandManager) {
         this.travellerManager = TravellerManager.getInstance();
-        this.commandManager = new CommandManager();
+        this.commandManager = commandManager;
     }
 
     // CREATE a traveller using the TravellerFactory

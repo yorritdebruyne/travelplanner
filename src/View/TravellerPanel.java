@@ -1,6 +1,7 @@
 package View;
 
 import Controller.TravellerController;
+import Command.CommandManager;
 import Model.*;
 import Observer.*;
 import javax.swing.*;
@@ -14,9 +15,9 @@ public class TravellerPanel extends JPanel implements TravellerObserver{
     private TravellerController travellerController;
     private DefaultListModel<Traveller> model = new DefaultListModel<>();
 
-    public TravellerPanel(Trip trip){
+    public TravellerPanel(Trip trip, CommandManager commandManager){
         this.trip = trip;
-        this.travellerController = new TravellerController();
+        this.travellerController = new TravellerController(commandManager);
         // Register panel to listen for global traveller changes
         Manager.TravellerManager.getInstance().registerObserver(this);
 

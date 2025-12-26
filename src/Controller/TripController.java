@@ -76,5 +76,9 @@ public class TripController {
         commandManager.redoCommand();
     }
 
+    public CommandManager getCommandManager() {
+        return commandManager;
+    }
+
 
 }

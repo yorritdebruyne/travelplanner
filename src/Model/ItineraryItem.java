@@ -14,7 +14,7 @@ public abstract class ItineraryItem {
         this.title = title;
         this.stringStartTime = stringStartTime;
         this.stringEndTime = stringEndTime;
-        this.type = type;
+//        this.type = type;
         this.location = location;
         this.description = description;
         this.price = price;
@@ -63,7 +63,7 @@ public abstract class ItineraryItem {
 
     public String getDetails() {
         return "Title: " + title +
-                "\nType: " + type +
+                "\nType: " + getType() +
                 "\nLocation: " + location +
                 "\nStart: " + stringStartTime +
                 "\nEnd: " + stringEndTime +

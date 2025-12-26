@@ -5,24 +5,24 @@ import Model.ItineraryItem;
 import Model.Trip;
 public class UpdateItineraryItemCommand implements Command {
     private final ItineraryItem oldItem, newItem;
-    private ItineraryItemManager itemManager;
+    private Trip trip;
 
-    public UpdateItineraryItemCommand(ItineraryItemManager itemManager, ItineraryItem oldItem, ItineraryItem newItem) {
-        this.itemManager = itemManager;
+    public UpdateItineraryItemCommand(Trip trip, ItineraryItem oldItem, ItineraryItem newItem) {
+        this.trip = trip;
         this.oldItem = oldItem;
         this.newItem = newItem;
     }
 
     @Override
     public void execute(){
-            itemManager.removeItem(oldItem);
-            itemManager.addItem(newItem);
+            trip.removeItineraryItem(oldItem);
+            trip.addItineraryItem(newItem);
     }
 
     @Override
     public void undo(){
-            itemManager.removeItem(newItem);
-            itemManager.addItem(oldItem);
+            trip.removeItineraryItem(newItem);
+            trip.addItineraryItem(oldItem);
     }
 }
 

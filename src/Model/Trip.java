@@ -1,5 +1,8 @@
 package Model;
 
+import Manager.ItineraryItemManager;
+
+import java.io.PrintWriter;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -12,6 +15,7 @@ public class Trip {
     private List<ItineraryItem> itineraryItems = new ArrayList<>();
     private List<Traveller> travellers = new ArrayList<>();
     private double totalPrice = 0;
+    private PriceStrategy priceStrategy = new DefaultPriceStrategy();
 
 
     public Trip(String title, String destination, String description, String startDate, String endDate) {
@@ -21,6 +25,11 @@ public class Trip {
         // Adjust to use dd/MM/YYYY
         this.startDate = LocalDate.parse(startDate, FORMATTER);
         this.endDate = LocalDate.parse(endDate, FORMATTER);
+    }
+
+    public void setPriceStrategy(PriceStrategy priceStrategy) {
+        this.priceStrategy = priceStrategy;
+        recalculateTotalPrice();
     }
 
 
@@ -42,23 +51,26 @@ public class Trip {
         // Range check
         LocalDate itemDate = LocalDate.parse(item.getStringStartTime().substring(0, 10), FORMATTER);
         if (itemDate.isBefore(startDate) || itemDate.isAfter(endDate)) {
-            throw new IllegalArgumentException("\"Item date \" + itemDate + \" is outside trip range (\" + startDate + \" to \" + endDate + \")\"");
+            throw new IllegalArgumentException("Item date " + itemDate + " is outside trip range (" + startDate + " to " + endDate + ")");
         }
         itineraryItems.add(item);
         recalculateTotalPrice();
+        ItineraryItemManager.getInstance().notifyObservers();
     }
 
     public void removeItineraryItem(ItineraryItem item){
         itineraryItems.remove(item);
         recalculateTotalPrice();
+        ItineraryItemManager.getInstance().notifyObservers();
     }
 
     public void recalculateTotalPrice() {
-        double sum =0.0;
-        for(ItineraryItem item : itineraryItems){
-            sum += item.getPrice();
-        }
-        this.totalPrice = sum;
+        this.totalPrice = priceStrategy.calculate(itineraryItems);
+//        double sum =0.0;
+//        for(ItineraryItem item : itineraryItems){
+//            sum += item.getPrice();
+//        }
+//        this.totalPrice = sum;
     }
 
     public List<ItineraryItem> getItemsForDay(LocalDate day) {

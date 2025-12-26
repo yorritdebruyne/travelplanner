@@ -7,27 +7,20 @@ import Model.*;
 import java.util.List;
 
 public class ItineraryItemController {
-    private static ItineraryItemManager itemManager;
-    private static CommandManager commandManager;
+    private ItineraryItemManager itemManager;
+    private CommandManager commandManager;
 
-    // Retrieve Singleton instance
-    public ItineraryItemController() {
+    public ItineraryItemController(CommandManager commandManager) {
         this.itemManager = ItineraryItemManager.getInstance();
-        this.commandManager = new CommandManager();
+        this.commandManager = commandManager;
     }
 
-    public ItineraryItem createItem(Trip trip,String title, String stringStartTime, String stringEndTime, String type, String location, String description, double totalPrice){
-        ItineraryItem ItineraryItem = new ItemBuilder()
-                .setTitle(title)
-                .setStringStartTime(stringStartTime)
-                .setStringEndTime(stringEndTime)
-                .setType(type)
-                .setLocation(location)
-                .setDescription(description)
-                .setTotalPrice(totalPrice)
-                .build();
-        commandManager.executeCommand(new AddItineraryItemCommand(trip, ItineraryItem));
-        return ItineraryItem;
+    public void createItem(Trip trip, ItineraryItem item) {
+        commandManager.executeCommand(new AddItineraryItemCommand(trip, item));
+    }
+
+    public void deleteItem(Trip trip, ItineraryItem item) {
+        commandManager.executeCommand(new DeleteItineraryItemCommand(trip, item));
     }
 
     public ItineraryItem getItemByTitle(String title) {
@@ -38,28 +31,9 @@ public class ItineraryItemController {
         return itemManager.getAllItems();
     }
 
-    public boolean updateItem(String oldTitle, String newTitle, String stringStartTime, String stringEndTime, String type, String location, String description, double totalPrice){
-        ItineraryItem oldItem = getItemByTitle(oldTitle);
+    public boolean updateItem(Trip trip, ItineraryItem oldItem, ItineraryItem newItem){
         if(oldItem != null) {
-            ItineraryItem newItem = new ItemBuilder()
-                    .setTitle(newTitle)
-                    .setStringStartTime(stringStartTime)
-                    .setStringEndTime(stringEndTime)
-                    .setType(type)
-                    .setLocation(location)
-                    .setDescription(description)
-                    .setTotalPrice(totalPrice)
-                    .build();
-            commandManager.executeCommand(new UpdateItineraryItemCommand(itemManager, oldItem, newItem));
-            return true;
-        }
-        return false;
-    }
-
-    public static boolean deleteItem(Trip trip, String title){
-        ItineraryItem item = itemManager.getItemByTitle(title);
-        if (item != null) {
-            commandManager.executeCommand(new DeleteItineraryItemCommand(trip, item));
+            commandManager.executeCommand(new UpdateItineraryItemCommand(trip, oldItem, newItem));
             return true;
         }
         return false;
@@ -74,6 +48,4 @@ public class ItineraryItemController {
     public void redoCommand() {
         commandManager.redoCommand();
     }
-
-
 }

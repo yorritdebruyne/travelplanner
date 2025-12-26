@@ -1,22 +1,29 @@
 package View;
 
 import Controller.ItineraryItemController;
+import Manager.ItineraryItemManager;
 import Model.*;
+import Observer.ItineraryItemsObserver;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.List;
 
-public class ItineraryPanel extends JPanel {
+public class ItineraryPanel extends JPanel implements ItineraryItemsObserver {
     private Trip trip;
     private ItineraryItemController itineraryItemController;
     private DefaultListModel<ItineraryItem> model = new DefaultListModel<>();
     private JLabel totalPriceLabel = new JLabel();
-    private JList<ItineraryItem> itemList = new JList<>(model);
 
-    public ItineraryPanel(Trip trip){
+    public ItineraryPanel(Trip trip, ItineraryItemController itineraryItemController){
         this.trip = trip;
+        this.itineraryItemController = itineraryItemController;
         setLayout(new BorderLayout());
+
+        // Register panel to listen for global itinerary changes
+        ItineraryItemManager.getInstance().registerObserver(this);
 
         JList<ItineraryItem> list = new JList<>(model);
 
@@ -46,8 +53,8 @@ public class ItineraryPanel extends JPanel {
                     (JFrame) SwingUtilities.getWindowAncestor(this)
             );
             if (item != null){
-                trip.addItineraryItem(item);
-                refresh();
+//                trip.addItineraryItem(item);
+                itineraryItemController.createItem(trip, item);
             }
         });
 
@@ -55,9 +62,11 @@ public class ItineraryPanel extends JPanel {
             ItineraryItem selected = list.getSelectedValue(); // JList local variable
 //            ItineraryItem selected = itemList.getSelectedValue();
             if(selected != null){
-                ItineraryItemController.deleteItem(trip, selected.getTitle());
+                itineraryItemController.deleteItem(trip, selected);
+
+//                ItineraryItemController.deleteItem(trip, selected.getTitle());
+
 //                ItineraryItemController.deleteItem(trip, String.valueOf(selected));
-                refresh();
             }
         });
 
@@ -77,7 +86,7 @@ public class ItineraryPanel extends JPanel {
         for ( ItineraryItem item : trip.getItineraryItems()){
             model.addElement(item);
         }
-        totalPriceLabel.setText("Total price: $" + trip.getTotalPrice());
+        totalPriceLabel.setText("Total price: €" + trip.getTotalPrice());
     }
 
     private void refreshRemove(){
@@ -85,6 +94,11 @@ public class ItineraryPanel extends JPanel {
         for(ItineraryItem item : trip.getItineraryItems()){
             model.removeElement(item);
         }
-        totalPriceLabel.setText("Total price: $" + trip.getTotalPrice());
+        totalPriceLabel.setText("Total price: €" + trip.getTotalPrice());
+    }
+
+    @Override
+    public void update(List<ItineraryItem> items) {
+        refresh();
     }
 }

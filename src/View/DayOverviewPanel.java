@@ -1,7 +1,9 @@
 package View;
 
+import Manager.ItineraryItemManager;
 import Model.ItineraryItem;
 import Model.Trip;
+import Observer.ItineraryItemsObserver;
 
 import javax.swing.*;
 import java.awt.*;
@@ -9,63 +11,32 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 
 
-public class DayOverviewPanel extends JPanel {
-
+public class DayOverviewPanel extends JPanel implements ItineraryItemsObserver {
+    private Trip trip;
     private DefaultListModel<ItineraryItem> model = new DefaultListModel<>();
     // Centralized formatter to match the rest of the app
     private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+    private JTextField dayField;
 
 
     public DayOverviewPanel(Trip trip) {
+        this.trip = trip;
         setLayout(new BorderLayout());
 
-        JTextField dayField = new JTextField(trip.getStringStartDate().format(FORMATTER));
+        // Register panel to listen for global itinerary changes
+        ItineraryItemManager.getInstance().registerObserver(this);
+
+        dayField = new JTextField(trip.getStringStartDate().format(FORMATTER), 10);
         JButton view = new JButton("View Day");
 
         JList<ItineraryItem> list = new JList<>(model);
 
-        view.addActionListener(e -> {
-            try {
-                LocalDate selectedDay = LocalDate.parse(dayField.getText(), FORMATTER);
+        view.addActionListener(e -> refreshList());
 
-                if (selectedDay.isBefore(trip.getStringStartDate()) ||
-                        selectedDay.isAfter(trip.getStringEndDate())) {
-
-                    JOptionPane.showMessageDialog(
-                            this,
-                            "Date must be between " +
-                                    trip.getStringStartDate().format(FORMATTER) +
-                                    " and " +
-                                    trip.getStringEndDate().format(FORMATTER),
-                            "Invalid date",
-                            JOptionPane.ERROR_MESSAGE
-                    );
-                    return;
-                }
-
-                model.clear();
-                for (ItineraryItem item : trip.getItineraryItems()) {
-                    // Extract the date part (first 10 chars: DD-MM-YYYY) and parse it
-                    String itemDateString = item.getStringStartTime().substring(0, 10);
-                    LocalDate itemDate = LocalDate.parse(itemDateString, FORMATTER);
-
-                    if (itemDate.equals(selectedDay)) {
-                        model.addElement(item);
-                    }
-                }
-
-            } catch (Exception ex) {
-                JOptionPane.showMessageDialog(
-                        this,
-                        "Invalid date format. Use YYYY-MM-DD.",
-                        "Error",
-                        JOptionPane.ERROR_MESSAGE
-                );
-            }
-        });
-
+        // Double click on an item to display its details
         list.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -90,5 +61,47 @@ public class DayOverviewPanel extends JPanel {
 
         add(top, BorderLayout.NORTH);
         add(new JScrollPane(list), BorderLayout.CENTER);
+    }
+
+    private void refreshList() {
+        try{
+            LocalDate selectedDay = LocalDate.parse(dayField.getText(), FORMATTER);
+
+            if (selectedDay.isBefore(trip.getStringStartDate()) ||
+                    selectedDay.isAfter(trip.getStringEndDate())) {
+
+                JOptionPane.showMessageDialog(
+                        this,
+                        "Date must be between " +
+                                trip.getStringStartDate().format(FORMATTER) +
+                                " and " +
+                                trip.getStringEndDate().format(FORMATTER),
+                        "Invalid date",
+                        JOptionPane.ERROR_MESSAGE
+                );
+                return;
+            }
+
+            model.clear();
+            for (ItineraryItem item : trip.getItineraryItems()){
+                LocalDate itemDate = LocalDate.parse(item.getStringStartTime().substring(0, 10), FORMATTER);
+                if (itemDate.equals(selectedDay)){
+                    model.addElement(item);
+                }
+            }
+        } catch (Exception e){
+            JOptionPane.showMessageDialog(
+                    this,
+                    "Invalid date format. Use DD-MM-YYYY.",
+                    "Error",
+                    JOptionPane.ERROR_MESSAGE
+            );
+        }
+    }
+
+    @Override
+    public void update(List<ItineraryItem> items) {
+        // Automatically called by the Manager when an item is added/deleted
+        refreshList();
     }
 }

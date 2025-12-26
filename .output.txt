@@ -2,11 +2,11 @@
     Directory: C:\IntelliJ\5-SoftwareDesign\travelplanner\travelplanner
 Mode                 LastWriteTime         Length Name
 ----                 -------------         ------ ----
-d-----        26/12/2025     11:27                .idea
+d-----        26/12/2025     14:13                .idea
 d-----        20/11/2025     15:16                out
 d-----        26/12/2025     10:52                src
 -a----        20/11/2025     14:27            344 .gitignore
--a----        26/12/2025     10:53          13375 .output.txt
+-a----        26/12/2025     11:32          13438 .output.txt
 -a----        27/11/2025     14:55           1808 overview.txt
 -a----        27/11/2025     15:00             97 README.md
 -a----        20/11/2025     14:27            433 travelplanner.iml
@@ -17,7 +17,7 @@ Mode                 LastWriteTime         Length Name
 -a----        27/11/2025     14:09            284 misc.xml
 -a----        20/11/2025     14:27            273 modules.xml
 -a----        20/11/2025     14:27            185 vcs.xml
--a----        26/12/2025     11:27          15414 workspace.xml
+-a----        26/12/2025     14:13          15414 workspace.xml
     Directory: C:\IntelliJ\5-SoftwareDesign\travelplanner\travelplanner\out
 Mode                 LastWriteTime         Length Name
 ----                 -------------         ------ ----

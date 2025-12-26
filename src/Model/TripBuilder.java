@@ -1,7 +1,11 @@
 package Model;
 
+import java.util.ArrayList;
+import java.util.*;
+
 public class TripBuilder {
     private String title, destination, description, stringStartDate, stringEndDate;
+    private List<Traveller> travellers = new ArrayList<>();
 
     // Fluent setters (setters who give 'this' instead of 'void')
     public TripBuilder setTitle(String title) {
@@ -29,7 +33,20 @@ public class TripBuilder {
         return this;
     }
 
-    public Trip build() {
-        return new Trip(title, destination, description, stringStartDate, stringEndDate);
+    public TripBuilder addTraveller (Traveller traveller) {
+        this.travellers.add(traveller);
+        return this;
     }
+
+    public Trip build() {
+        Trip trip = new Trip(title, destination, description, stringStartDate, stringEndDate);
+        for (Traveller traveller : travellers) {
+            trip.addTraveller(traveller);
+        }
+        return trip;
+    }
+
+//    public Trip build() {
+//        return new Trip(title, destination, description, stringStartDate, stringEndDate);
+//    }
 }

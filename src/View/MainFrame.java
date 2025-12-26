@@ -1,15 +1,18 @@
 package View;
 
 import Controller.TripController;
+import Manager.TripManager;
 import Model.Trip;
+import Observer.TripObserver;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.List;
 
 
-public class MainFrame extends JFrame {
+public class MainFrame extends JFrame implements TripObserver {
     private TripController tripController = new TripController();
     private DefaultListModel<Trip> tripModel = new DefaultListModel<>();
     private JList<Trip> tripList = new JList<>(tripModel);
@@ -38,9 +41,13 @@ public class MainFrame extends JFrame {
         });
 
 
+        TripManager.getInstance().registerObserver(this);
+
         JButton addTrip = new JButton("Add Trip");
         JButton openTrip = new JButton("Open Trip");
         JButton removeTrip = new JButton("Remove Trip");
+        JButton undo = new JButton("Undo");
+        JButton redo = new JButton("Redo");
 
         addTrip.addActionListener(e -> {
             Trip trip = TripInputDialog.show(this, tripController);
@@ -50,7 +57,7 @@ public class MainFrame extends JFrame {
         openTrip.addActionListener(e -> {
             Trip selected = tripList.getSelectedValue();;
             if(selected != null) {
-                new TripDetailFrame(selected).setVisible(true);
+                new TripDetailFrame(selected, tripController.getCommandManager()).setVisible(true);
             }
         });
 
@@ -62,21 +69,36 @@ public class MainFrame extends JFrame {
             }
         });
 
+        undo.addActionListener(e -> tripController.undoCommand());
+        redo.addActionListener(e -> tripController.redoCommand());
+
         add(new JScrollPane(tripList), BorderLayout.CENTER);
 
         JPanel buttons = new JPanel();
         buttons.add(addTrip);
         buttons.add(openTrip);
         buttons.add(removeTrip);
+        buttons.add(undo);
+        buttons.add(redo);
         add(buttons, BorderLayout.SOUTH);
 
-        refresh();
+        update(tripController.getAllTrips());
+
+//        refresh();
     }
 
     private void refresh(){
         tripModel.clear();
         for(Trip t : tripController.getAllTrips()){
             tripModel.addElement(t);
+        }
+    }
+
+    @Override
+    public void update(List<Trip> trips) {
+        tripModel.clear();
+        for(Trip trip : trips){
+            tripModel.addElement(trip);
         }
     }
 }
