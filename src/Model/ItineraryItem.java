@@ -53,4 +53,7 @@ public abstract class ItineraryItem {
                 "\nPrice: €" + price;
     }
 
+    public String getStringEndTime() {
+        return stringEndTime;
+    }
 }
