@@ -29,32 +29,11 @@ public class TripController {
         return trip;
     }
 
-    // READ all trips
-    public Trip getTripByTitle(String title) {
-        return tripManager.getTripByTitle(title);
-    }
 
     public List<Trip> getAllTrips() {
         return tripManager.getAllTrips();
     }
 
-    // UPDATE a trip via TripBuilder
-    public boolean updateTrip(String oldTitle, String newTitle, String newDestination, String newDescription, String newStringStartDate, String newStringEndDate) {
-        Trip oldTrip = tripManager.getTripByTitle(oldTitle);
-        if (oldTrip != null) {
-            Trip newTrip = new TripBuilder()
-                    .setTitle(newTitle)
-                    .setDestination(newDestination)
-                    .setDescription(newDescription)
-                    .setStringStartDate(newStringStartDate)
-                    .setStringEndDate(newStringEndDate)
-                    .build();
-
-            commandManager.executeCommand(new UpdateTripCommand(tripManager, oldTrip, newTrip));
-            return true;
-        }
-        return false;
-    }
 
     // DELETE a trip
     public boolean deleteTrip(String title) {

@@ -60,9 +60,6 @@ public class TravellerManager {
         notifyObservers();
     }
 
-    public Traveller getTravellerById(String id) {
-        return travellers.get(id);
-    }
 
     public List<Traveller> getAllTravellers() {
         return new ArrayList<>(travellers.values());

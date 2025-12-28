@@ -27,19 +27,14 @@ public class Trip {
         this.endDate = LocalDate.parse(endDate, FORMATTER);
     }
 
-    public void setPriceStrategy(PriceStrategy priceStrategy) {
-        this.priceStrategy = priceStrategy;
-        recalculateTotalPrice();
-    }
+
 
 
     // Getters
     public String getTitle() {
         return title;
     }
-    public String getDestination() {
-        return destination;
-    }
+
     public LocalDate getStringStartDate() {
         return startDate;
     }
@@ -66,23 +61,8 @@ public class Trip {
 
     public void recalculateTotalPrice() {
         this.totalPrice = priceStrategy.calculate(itineraryItems);
-//        double sum =0.0;
-//        for(ItineraryItem item : itineraryItems){
-//            sum += item.getPrice();
-//        }
-//        this.totalPrice = sum;
     }
 
-    public List<ItineraryItem> getItemsForDay(LocalDate day) {
-        List<ItineraryItem> result = new ArrayList<>();
-        for (ItineraryItem item : itineraryItems) {
-            LocalDate itemDate = LocalDate.parse(item.getStringStartTime().substring(0, 10), FORMATTER);
-            if (itemDate.equals(day)) {
-                result.add(item);
-            }
-        }
-        return result;
-    }
 
     public List<ItineraryItem> getItineraryItems() {
         return new ArrayList<>(itineraryItems);

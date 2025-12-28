@@ -60,5 +60,5 @@ public class ItemBuilder {
                 totalPrice
         );
     }
-//    public ItineraryItem build(){return new ItineraryItem(title, stringStartTime, stringEndTime, type, location, description, totalPrice);}
+
 }

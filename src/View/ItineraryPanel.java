@@ -53,20 +53,15 @@ public class ItineraryPanel extends JPanel implements ItineraryItemsObserver {
                     (JFrame) SwingUtilities.getWindowAncestor(this)
             );
             if (item != null){
-//                trip.addItineraryItem(item);
                 itineraryItemController.createItem(trip, item);
             }
         });
 
         remove.addActionListener(e->{
             ItineraryItem selected = list.getSelectedValue(); // JList local variable
-//            ItineraryItem selected = itemList.getSelectedValue();
             if(selected != null){
                 itineraryItemController.deleteItem(trip, selected);
 
-//                ItineraryItemController.deleteItem(trip, selected.getTitle());
-
-//                ItineraryItemController.deleteItem(trip, String.valueOf(selected));
             }
         });
 
@@ -89,13 +84,6 @@ public class ItineraryPanel extends JPanel implements ItineraryItemsObserver {
         totalPriceLabel.setText("Total price: €" + trip.getTotalPrice());
     }
 
-    private void refreshRemove(){
-        model.clear();
-        for(ItineraryItem item : trip.getItineraryItems()){
-            model.removeElement(item);
-        }
-        totalPriceLabel.setText("Total price: €" + trip.getTotalPrice());
-    }
 
     @Override
     public void update(List<ItineraryItem> items) {
