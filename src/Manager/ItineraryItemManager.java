@@ -39,9 +39,29 @@ public class ItineraryItemManager {
         }
     }
 
+    public void addItem(ItineraryItem item){
+        items.add(item);
+        notifyObservers();
+    }
+
+    public void removeItem(ItineraryItem item){
+        items.remove(item);
+        notifyObservers();
+    }
 
     public List<ItineraryItem> getAllItems(){
         return new ArrayList<>(items);
     }
+
+    public ItineraryItem getItemByTitle(String title) {
+        for (ItineraryItem item : items) {
+            if (item.getTitle().equals(title)) {
+                return item;
+            }
+        }
+        return null;
+    }
+
+
 
 }
