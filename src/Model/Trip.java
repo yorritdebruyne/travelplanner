@@ -25,6 +25,10 @@ public class Trip {
         // Adjust to use dd/MM/YYYY
         this.startDate = LocalDate.parse(startDate, FORMATTER);
         this.endDate = LocalDate.parse(endDate, FORMATTER);
+
+        if (this.startDate.isAfter(this.endDate)) {
+            throw new IllegalArgumentException("Start date must be before end date");
+        }
     }
 
     public void setPriceStrategy(PriceStrategy priceStrategy) {
@@ -49,10 +53,17 @@ public class Trip {
 
     public void addItineraryItem(ItineraryItem item) {
         // Range check
-        LocalDate itemDate = LocalDate.parse(item.getStringStartTime().substring(0, 10), FORMATTER);
-        if (itemDate.isBefore(startDate) || itemDate.isAfter(endDate)) {
-            throw new IllegalArgumentException("Item date " + itemDate + " is outside trip range (" + startDate + " to " + endDate + ")");
+        LocalDate itemStartDate = LocalDate.parse(item.getStringStartTime().substring(0, 10), FORMATTER);
+        LocalDate itemEndDate = LocalDate.parse(item.getStringEndTime().substring(0, 10), FORMATTER);
+        // Check if item is within the trip range
+        if (itemStartDate.isBefore(startDate) || itemEndDate.isAfter(endDate)) {
+            throw new IllegalArgumentException("Item date range " + itemStartDate + " to " + itemEndDate + " is outside trip range (" + startDate + " to " + endDate + ")");
         }
+        // Check if item's end date is before its start date
+        if (itemEndDate.isBefore(itemStartDate)) {
+            throw new IllegalArgumentException("Item end date " + itemEndDate + " is before start date " + itemStartDate);
+        }
+
         itineraryItems.add(item);
         recalculateTotalPrice();
         ItineraryItemManager.getInstance().notifyObservers();
