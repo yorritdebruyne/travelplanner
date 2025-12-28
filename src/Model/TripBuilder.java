@@ -33,10 +33,7 @@ public class TripBuilder {
         return this;
     }
 
-    public TripBuilder addTraveller (Traveller traveller) {
-        this.travellers.add(traveller);
-        return this;
-    }
+
 
     public Trip build() {
         Trip trip = new Trip(title, destination, description, stringStartDate, stringEndDate);
@@ -46,7 +43,4 @@ public class TripBuilder {
         return trip;
     }
 
-//    public Trip build() {
-//        return new Trip(title, destination, description, stringStartDate, stringEndDate);
-//    }
 }
