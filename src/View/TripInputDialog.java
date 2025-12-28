@@ -25,13 +25,17 @@ public class TripInputDialog {
         int result = JOptionPane.showConfirmDialog(parent, fields, "Create Trip", JOptionPane.OK_CANCEL_OPTION);
 
         if(result == JOptionPane.OK_OPTION) {
-            return controller.createTrip(
-                    title.getText(),
-                    destination.getText(),
-                    description.getText(),
-                    startDate.getText(),
-                    endDate.getText()
-            );
+            try{
+                return controller.createTrip(
+                        title.getText(),
+                        destination.getText(),
+                        description.getText(),
+                        startDate.getText(),
+                        endDate.getText()
+                );
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(parent, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            }
         }
         return null;
     }
