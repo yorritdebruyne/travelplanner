@@ -2,14 +2,16 @@
     Directory: C:\IntelliJ\5-SoftwareDesign\travelplanner\travelplanner
 Mode                 LastWriteTime         Length Name
 ----                 -------------         ------ ----
-d-----        26/12/2025     14:13                .idea
-d-----        20/11/2025     15:16                out
+d-----         4/01/2026     21:26                .idea
+d-----        28/12/2025     13:05                out
+d-----         4/01/2026     21:24                ProjectUML
 d-----        26/12/2025     10:52                src
+d-----        28/12/2025     13:29                test
 -a----        20/11/2025     14:27            344 .gitignore
--a----        26/12/2025     11:32          13438 .output.txt
+-a----        26/12/2025     15:06          13438 .output.txt
 -a----        27/11/2025     14:55           1808 overview.txt
 -a----        27/11/2025     15:00             97 README.md
--a----        20/11/2025     14:27            433 travelplanner.iml
+-a----        28/12/2025     13:05           1795 travelplanner.iml
     Directory: C:\IntelliJ\5-SoftwareDesign\travelplanner\travelplanner\.idea
 Mode                 LastWriteTime         Length Name
 ----                 -------------         ------ ----
@@ -17,120 +19,143 @@ Mode                 LastWriteTime         Length Name
 -a----        27/11/2025     14:09            284 misc.xml
 -a----        20/11/2025     14:27            273 modules.xml
 -a----        20/11/2025     14:27            185 vcs.xml
--a----        26/12/2025     14:13          15414 workspace.xml
+-a----         4/01/2026     21:26          16336 workspace.xml
     Directory: C:\IntelliJ\5-SoftwareDesign\travelplanner\travelplanner\out
 Mode                 LastWriteTime         Length Name
 ----                 -------------         ------ ----
 d-----        20/11/2025     15:16                production
+d-----        28/12/2025     13:05                test
     Directory: C:\IntelliJ\5-SoftwareDesign\travelplanner\travelplanner\out\pro
     duction
 Mode                 LastWriteTime         Length Name
 ----                 -------------         ------ ----
-d-----        26/12/2025     11:15                travelplanner
+d-----        28/12/2025     13:55                travelplanner
     Directory: C:\IntelliJ\5-SoftwareDesign\travelplanner\travelplanner\out\pro
     duction\travelplanner
 Mode                 LastWriteTime         Length Name
 ----                 -------------         ------ ----
-d-----        26/12/2025     10:38                Command
-d-----        26/12/2025     10:38                Controller
-d-----        26/12/2025     10:38                Manager
-d-----        26/12/2025     11:27                Model
-d-----        26/12/2025     10:38                Observer
-d-----        26/12/2025     11:27                View
--a----        26/12/2025     11:15           1063 Main.class
+d-----        28/12/2025     13:05                Command
+d-----        28/12/2025     13:55                Controller
+d-----        28/12/2025     13:55                Manager
+d-----        28/12/2025     13:55                Model
+d-----        28/12/2025     13:05                Observer
+d-----        28/12/2025     13:55                View
+-a----        28/12/2025     13:05           1063 Main.class
     Directory: C:\IntelliJ\5-SoftwareDesign\travelplanner\travelplanner\out\pro
     duction\travelplanner\Command
 Mode                 LastWriteTime         Length Name
 ----                 -------------         ------ ----
--a----        26/12/2025     10:38            768 AddItineraryItemCommand.class
--a----        26/12/2025     10:38            884 AddTravellerCommand.class
--a----        26/12/2025     10:38            730 AddTripCommand.class
--a----        26/12/2025     10:38            142 Command.class
--a----        26/12/2025     10:38           1154 CommandManager.class
--a----        26/12/2025     10:38            777 DeleteItineraryItemCommand.cl
+-a----        28/12/2025     13:05            768 AddItineraryItemCommand.class
+-a----        28/12/2025     13:05            884 AddTravellerCommand.class
+-a----        28/12/2025     13:05            730 AddTripCommand.class
+-a----        28/12/2025     13:05            142 Command.class
+-a----        28/12/2025     13:05           1154 CommandManager.class
+-a----        28/12/2025     13:05            777 DeleteItineraryItemCommand.cl
                                                   ass
--a----        26/12/2025     10:38            893 DeleteTravellerCommand.class
--a----        26/12/2025     10:38            739 DeleteTripCommand.class
--a----        26/12/2025     10:38            921 UpdateItineraryItemCommand.cl
+-a----        28/12/2025     13:05            893 DeleteTravellerCommand.class
+-a----        28/12/2025     13:05            739 DeleteTripCommand.class
+-a----        28/12/2025     13:05            878 UpdateItineraryItemCommand.cl
                                                   ass
--a----        26/12/2025     10:38            998 UpdateTravellerCommand.class
--a----        26/12/2025     10:38            831 UpdateTripCommand.class
+-a----        28/12/2025     13:05            998 UpdateTravellerCommand.class
+-a----        28/12/2025     13:05            831 UpdateTripCommand.class
     Directory: C:\IntelliJ\5-SoftwareDesign\travelplanner\travelplanner\out\pro
     duction\travelplanner\Controller
 Mode                 LastWriteTime         Length Name
 ----                 -------------         ------ ----
--a----        26/12/2025     10:38           3040 ItineraryItemController.class
--a----        26/12/2025     10:38           2712 TravellerController.class
--a----        26/12/2025     10:38           2687 TripController.class
+-a----        28/12/2025     13:55           1965 ItineraryItemController.class
+-a----        28/12/2025     13:55           2741 TravellerController.class
+-a----        28/12/2025     13:55           2797 TripController.class
     Directory: C:\IntelliJ\5-SoftwareDesign\travelplanner\travelplanner\out\pro
     duction\travelplanner\Manager
 Mode                 LastWriteTime         Length Name
 ----                 -------------         ------ ----
--a----        26/12/2025     10:38           2390 ItineraryItemManager.class
--a----        26/12/2025     10:38           3155 TravellerManager.class
--a----        26/12/2025     10:38           2260 TripManager.class
+-a----        28/12/2025     13:55           2390 ItineraryItemManager.class
+-a----        28/12/2025     13:55           3155 TravellerManager.class
+-a----        28/12/2025     13:05           2260 TripManager.class
     Directory: C:\IntelliJ\5-SoftwareDesign\travelplanner\travelplanner\out\pro
     duction\travelplanner\Model
 Mode                 LastWriteTime         Length Name
 ----                 -------------         ------ ----
-d-----        26/12/2025     10:38                Items
--a----        26/12/2025     10:38            561 AdminTraveller.class
--a----        26/12/2025     10:38           1481 DefaultPriceStrategy.class
--a----        26/12/2025     10:38            561 GuestTraveller.class
--a----        26/12/2025     10:38           1913 ItemBuilder.class
--a----        26/12/2025     10:38           2170 ItineraryItem.class
--a----        26/12/2025     10:38            744 ItineraryItemFactory$1.class
--a----        26/12/2025     10:38           1343 ItineraryItemFactory.class
--a----        26/12/2025     10:38           1098 ItineraryType.class
--a----        26/12/2025     10:38            220 PriceStrategy.class
--a----        26/12/2025     10:38           2132 Traveller.class
--a----        26/12/2025     10:38            671 TravellerFactory$1.class
--a----        26/12/2025     10:38           1708 TravellerFactory.class
--a----        26/12/2025     10:38           1035 TravellerType.class
--a----        26/12/2025     11:27           5035 Trip.class
--a----        26/12/2025     10:38           1194 TripBuilder.class
+d-----        28/12/2025     13:05                Items
+-a----        28/12/2025     13:05            561 AdminTraveller.class
+-a----        28/12/2025     13:05           1481 DefaultPriceStrategy.class
+-a----        28/12/2025     13:05            561 GuestTraveller.class
+-a----        28/12/2025     13:55           1913 ItemBuilder.class
+-a----        28/12/2025     13:55           2091 ItineraryItem.class
+-a----        28/12/2025     13:05            744 ItineraryItemFactory$1.class
+-a----        28/12/2025     13:05           1343 ItineraryItemFactory.class
+-a----        28/12/2025     13:05           1098 ItineraryType.class
+-a----        28/12/2025     13:05            220 PriceStrategy.class
+-a----        28/12/2025     13:05           2132 Traveller.class
+-a----        28/12/2025     13:05            671 TravellerFactory$1.class
+-a----        28/12/2025     13:05           1708 TravellerFactory.class
+-a----        28/12/2025     13:05           1035 TravellerType.class
+-a----        28/12/2025     13:55           5764 Trip.class
+-a----        28/12/2025     13:55           1737 TripBuilder.class
     Directory: C:\IntelliJ\5-SoftwareDesign\travelplanner\travelplanner\out\pro
     duction\travelplanner\Model\Items
 Mode                 LastWriteTime         Length Name
 ----                 -------------         ------ ----
--a----        26/12/2025     10:38            678 AccommodationItem.class
--a----        26/12/2025     10:38            658 ActivityItem.class
--a----        26/12/2025     10:38            662 TransportItem.class
+-a----        28/12/2025     13:05            678 AccommodationItem.class
+-a----        28/12/2025     13:05            658 ActivityItem.class
+-a----        28/12/2025     13:05            662 TransportItem.class
     Directory: C:\IntelliJ\5-SoftwareDesign\travelplanner\travelplanner\out\pro
     duction\travelplanner\Observer
 Mode                 LastWriteTime         Length Name
 ----                 -------------         ------ ----
--a----        26/12/2025     10:38            238 ItineraryItemsObserver.class
--a----        26/12/2025     10:38            224 TravellerObserver.class
--a----        26/12/2025     10:38            209 TripObserver.class
+-a----        28/12/2025     13:05            238 ItineraryItemsObserver.class
+-a----        28/12/2025     13:05            224 TravellerObserver.class
+-a----        28/12/2025     13:05            209 TripObserver.class
     Directory: C:\IntelliJ\5-SoftwareDesign\travelplanner\travelplanner\out\pro
     duction\travelplanner\View
 Mode                 LastWriteTime         Length Name
 ----                 -------------         ------ ----
--a----        26/12/2025     11:27           1261 DayOverviewPanel$1.class
--a----        26/12/2025     11:27           4742 DayOverviewPanel.class
--a----        26/12/2025     11:15           2632 ItineraryItemInputDialog.clas
+-a----        28/12/2025     13:05           1261 DayOverviewPanel$1.class
+-a----        28/12/2025     13:05           5171 DayOverviewPanel.class
+-a----        28/12/2025     13:05           2949 ItineraryItemInputDialog.clas
                                                   s
--a----        26/12/2025     11:15           1249 ItineraryPanel$1.class
--a----        26/12/2025     11:15           4695 ItineraryPanel.class
--a----        26/12/2025     11:15           1141 MainFrame$1.class
--a----        26/12/2025     11:15           3798 MainFrame.class
--a----        26/12/2025     11:15           1836 TravellerInputDialog.class
--a----        26/12/2025     10:38           1247 TravellerPanel$1.class
--a----        26/12/2025     10:38           5533 TravellerPanel.class
--a----        26/12/2025     10:38           1391 TripDetailFrame.class
--a----        26/12/2025     11:17           1459 TripInputDialog.class
--a----        26/12/2025     10:38           1510 TripListView.class
+-a----        28/12/2025     13:55           1285 ItineraryPanel$1.class
+-a----        28/12/2025     13:55           4971 ItineraryPanel.class
+-a----        28/12/2025     13:05           1141 MainFrame$1.class
+-a----        28/12/2025     13:05           4832 MainFrame.class
+-a----        28/12/2025     13:05           1836 TravellerInputDialog.class
+-a----        28/12/2025     13:05           1271 TravellerPanel$1.class
+-a----        28/12/2025     13:05           5650 TravellerPanel.class
+-a----        28/12/2025     13:05           1717 TripDetailFrame.class
+-a----        28/12/2025     13:27           1683 TripInputDialog.class
+-a----        28/12/2025     13:05           1510 TripListView.class
+    Directory: C:\IntelliJ\5-SoftwareDesign\travelplanner\travelplanner\out\tes
+    t
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+d-----        28/12/2025     13:44                travelplanner
+    Directory: C:\IntelliJ\5-SoftwareDesign\travelplanner\travelplanner\out\tes
+    t\travelplanner
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+d-----        28/12/2025     13:55                Model
+    Directory: C:\IntelliJ\5-SoftwareDesign\travelplanner\travelplanner\out\tes
+    t\travelplanner\Model
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a----        28/12/2025     13:44           2757 TripIT.class
+-a----        28/12/2025     13:55           4624 TripUnitTest.class
+    Directory: C:\IntelliJ\5-SoftwareDesign\travelplanner\travelplanner\Project
+    UML
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a----         4/01/2026     21:24           4495 data.zip
+-a----         4/01/2026     21:24        4211872 project.xml
     Directory: C:\IntelliJ\5-SoftwareDesign\travelplanner\travelplanner\src
 Mode                 LastWriteTime         Length Name
 ----                 -------------         ------ ----
-d-----        26/12/2025     11:31                Command
-d-----        26/12/2025     11:31                Controller
+d-----        26/12/2025     15:06                Command
+d-----        28/12/2025     13:51                Controller
 d-----        27/11/2025     15:27                Database
-d-----        21/12/2025     21:04                Manager
-d-----        26/12/2025     11:31                Model
+d-----        28/12/2025     13:54                Manager
+d-----        28/12/2025     13:55                Model
 d-----        11/12/2025     15:39                Observer
-d-----        26/12/2025     11:31                View
+d-----        28/12/2025     13:45                View
 -a----        26/12/2025     10:52            243 Main.java
     Directory: C:\IntelliJ\5-SoftwareDesign\travelplanner\travelplanner\src\Com
     mand
@@ -145,7 +170,7 @@ Mode                 LastWriteTime         Length Name
                                                   va
 -a----        21/12/2025     20:43            631 DeleteTravellerCommand.java
 -a----         4/12/2025     15:25            552 DeleteTripCommand.java
--a----        21/12/2025     19:58            775 UpdateItineraryItemCommand.ja
+-a----        26/12/2025     15:06            723 UpdateItineraryItemCommand.ja
                                                   va
 -a----        21/12/2025     20:43            870 UpdateTravellerCommand.java
 -a----        21/12/2025     19:58            688 UpdateTripCommand.java
@@ -153,15 +178,15 @@ Mode                 LastWriteTime         Length Name
     troller
 Mode                 LastWriteTime         Length Name
 ----                 -------------         ------ ----
--a----        26/12/2025     11:31           2767 ItineraryItemController.java
--a----        26/12/2025     11:31           2478 TravellerController.java
--a----        26/12/2025     10:06           2554 TripController.java
+-a----        28/12/2025     13:51           1460 ItineraryItemController.java
+-a----        28/12/2025     13:51           2501 TravellerController.java
+-a----        28/12/2025     13:51           2644 TripController.java
     Directory: C:\IntelliJ\5-SoftwareDesign\travelplanner\travelplanner\src\Man
     ager
 Mode                 LastWriteTime         Length Name
 ----                 -------------         ------ ----
--a----        11/12/2025     15:39           1702 ItineraryItemManager.java
--a----        21/12/2025     21:04           1954 TravellerManager.java
+-a----        28/12/2025     13:54           1702 ItineraryItemManager.java
+-a----        28/12/2025     13:51           1954 TravellerManager.java
 -a----         4/12/2025     15:54           1953 TripManager.java
     Directory: C:\IntelliJ\5-SoftwareDesign\travelplanner\travelplanner\src\Mod
     el
@@ -171,16 +196,16 @@ d-----        26/12/2025     10:25                Items
 -a----        26/12/2025     10:06            281 AdminTraveller.java
 -a----        26/12/2025     10:38            265 DefaultPriceStrategy.java
 -a----        26/12/2025     10:06            281 GuestTraveller.java
--a----        26/12/2025     10:38           1910 ItemBuilder.java
--a----        26/12/2025     11:31           2080 ItineraryItem.java
+-a----        28/12/2025     13:45           1769 ItemBuilder.java
+-a----        28/12/2025     13:45           1540 ItineraryItem.java
 -a----        26/12/2025     10:25            709 ItineraryItemFactory.java
 -a----        26/12/2025     10:18             90 ItineraryType.java
 -a----        26/12/2025     10:38            131 PriceStrategy.java
 -a----        26/12/2025     10:06           1533 Traveller.java
 -a----        21/12/2025     23:19           1368 TravellerFactory.java
 -a----        11/12/2025     15:39             68 TravellerType.java
--a----        26/12/2025     11:31           3513 Trip.java
--a----         4/12/2025     14:35            993 TripBuilder.java
+-a----        28/12/2025     13:55           4605 Trip.java
+-a----        28/12/2025     13:45           1243 TripBuilder.java
     Directory: C:\IntelliJ\5-SoftwareDesign\travelplanner\travelplanner\src\Mod
     el\Items
 Mode                 LastWriteTime         Length Name
@@ -199,12 +224,22 @@ Mode                 LastWriteTime         Length Name
     w
 Mode                 LastWriteTime         Length Name
 ----                 -------------         ------ ----
--a----        26/12/2025     11:27           3409 DayOverviewPanel.java
--a----        26/12/2025     11:31           1720 ItineraryItemInputDialog.java
--a----        26/12/2025     11:31           3033 ItineraryPanel.java
--a----        26/12/2025     11:15           2545 MainFrame.java
+-a----        26/12/2025     15:06           3762 DayOverviewPanel.java
+-a----        26/12/2025     15:25           1896 ItineraryItemInputDialog.java
+-a----        28/12/2025     13:45           3001 ItineraryPanel.java
+-a----        26/12/2025     15:26           3266 MainFrame.java
 -a----        26/12/2025     11:15           1524 TravellerInputDialog.java
--a----        26/12/2025     11:31           3950 TravellerPanel.java
--a----        21/12/2025     19:58            486 TripDetailFrame.java
--a----        26/12/2025     11:17           1199 TripInputDialog.java
+-a----        26/12/2025     15:26           4027 TravellerPanel.java
+-a----        26/12/2025     15:26            722 TripDetailFrame.java
+-a----        28/12/2025     13:27           1405 TripInputDialog.java
 -a----         4/12/2025     15:50            374 TripListView.java
+    Directory: C:\IntelliJ\5-SoftwareDesign\travelplanner\travelplanner\test
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+d-----        28/12/2025     13:44                Model
+    Directory: C:\IntelliJ\5-SoftwareDesign\travelplanner\travelplanner\test\Mo
+    del
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a----        28/12/2025     13:44           3152 TripIT.java
+-a----        28/12/2025     13:30           3689 TripUnitTest.java
